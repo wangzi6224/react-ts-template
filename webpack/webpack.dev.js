@@ -1,0 +1,30 @@
+const base = require('./webpack.base');
+const {merge} = require("webpack-merge");
+const {proxy} = require('../config')
+
+process.env.NODE = 'development';
+
+const devConfig = {
+  mode: "development",
+  /* output: {
+    hotUpdateChunkFilename: "[id].[hash].hot-update.js",
+    hotUpdateMainFilename: "[hash].hot-update.json",
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
+    proxy:{}
+  }, */
+  watchOptions: {
+    ignored: /node_modules/,
+    aggregateTimeout: 300,
+    poll: 1000
+  },
+  devServer: {
+    port: 8000,
+    static: '../dist',
+    hot: true,
+    proxy
+  },
+  devtool: "source-map"
+};
+
+module.exports = merge(base, devConfig)

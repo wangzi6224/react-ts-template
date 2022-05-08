@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const os = require("os");
+const {alias} = require('../config');
 
 module.exports = {
   entry: path.join(__dirname, '../src/index.js'),
@@ -104,5 +105,9 @@ module.exports = {
         removeComments: true,
       }
     })
-  ]
+  ],
+  resolve: {
+    alias,
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.less', '.css', '.gql', 'graphql']
+  }
 }
