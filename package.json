@@ -5,12 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack/webpack.base.js",
-    "start": "webpack-dev-server --config webpack/webpack.dev.js --open"
+    "build": "webpack --config webpack/webpack.prod.js",
+    "dev": "webpack-dev-server --config webpack/webpack.dev.js --open",
+    "start": "npm run dev"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.3",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
@@ -19,11 +26,28 @@
     "html-webpack-plugin": "^5.5.0",
     "less-loader": "^10.2.0",
     "mini-css-extract-plugin": "^2.6.0",
+    "normalize.css": "^8.0.1",
+    "postcss-loader": "^6.2.1",
+    "postcss-preset-env": "^7.5.0",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
+    "ts-loader": "^9.3.0",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0",
     "webpack-merge": "^5.8.0"
+  },
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      ">0.1%",
+      "not dead",
+      "not op_mini all"
+    ]
   },
   "dependencies": {
     "react": "^18.1.0",

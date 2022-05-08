@@ -8,7 +8,7 @@ const os = require("os");
 const {alias} = require('../config');
 
 module.exports = {
-  entry: path.join(__dirname, '../src/index.js'),
+  entry: path.join(__dirname, '../src/index.tsx'),
   output: {
     path: path.join(__dirname, '../dist'),
     filename: "[name]_[chunkhash:8].js"
@@ -21,12 +21,17 @@ module.exports = {
         loader: "babel-loader"
       },
       {
+        test: /\.(ts|tsx)$/,
+        loader: "ts-loader"
+      },
+      {
         test: /\.(css|less)$/,
         use: [
           MiniCssExtractPlugin.loader,
           // "style-loader",
-          'css-loader',
+          "css-loader",
           "less-loader",
+          "postcss-loader"
         ]
       },
       {
@@ -36,7 +41,7 @@ module.exports = {
           options: {
             limit: 500,
             outputPath: 'public/images/',
-            name: '[name].[hash:8].[ext]'
+            name: '[name].[chunkhash:8].[ext]'
           }
         }
         ]
@@ -72,12 +77,12 @@ module.exports = {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: 10,
-          filename: "vendors_[hash:8].js",
+          filename: "vendors_[chunkhash:8].js",
           reuseExistingChunk: true,
         },
         commons: {
           chunks: "all",
-          filename: "commons_[hash:8].js",
+          filename: "commons_[chunkhash:8].js",
           minSize: 0,
           minChunks: 2,
           priority: 1
@@ -108,6 +113,6 @@ module.exports = {
   ],
   resolve: {
     alias,
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.less', '.css', '.gql', 'graphql']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.less', '.css']
   }
 }
