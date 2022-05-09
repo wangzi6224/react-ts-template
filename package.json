@@ -8,14 +8,14 @@
     "build": "webpack --config webpack/webpack.prod.js",
     "dev": "webpack-dev-server --config webpack/webpack.dev.js --open",
     "lint-staged": "lint-staged",
-    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
-    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
-    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
+    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
     "start": "npm run dev"
   },
   "lint-staged": {
     "src/*.{ts,tsx,js,jsx}": [
-      "npm run lint:eslint:fix",
+      "npm run lint:js",
       "git add --force"
     ],
     "*.{md,json}": [
@@ -23,6 +23,7 @@
       "git add --force"
     ]
   },
+  "pre-commit": "lint:staged",
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint:js",
@@ -57,6 +58,7 @@
     "normalize.css": "^8.0.1",
     "postcss-loader": "^6.2.1",
     "postcss-preset-env": "^7.5.0",
+    "pre-commit": "^1.2.2",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.3.0",

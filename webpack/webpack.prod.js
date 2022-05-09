@@ -1,10 +1,10 @@
+const { merge } = require("webpack-merge");
 const base = require('./webpack.base');
-const {merge} = require("webpack-merge");
 
 const prodConfig = {
   devtool: 'hidden-source-map',
   mode: 'production',
-  stats: "errors-only",
+  stats: "errors-only"
 };
 
-module.exports = merge(base, prodConfig)
+module.exports = merge(base, prodConfig);
