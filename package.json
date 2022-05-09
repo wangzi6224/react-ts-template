@@ -25,8 +25,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test", // 在commit之前先执行npm run test命令
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS" // 校验commit时添加的备注信息是否符合我们要求的规范
+      "pre-commit": "npm run lint:js",
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
   },
   "author": "",
