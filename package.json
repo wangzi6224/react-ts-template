@@ -1,7 +1,7 @@
 {
   "name": "react-ts-template",
   "version": "1.0.0",
-  "description": "React-ts-template",
+  "description": "react-ts-template",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,17 +9,35 @@
     "dev": "webpack-dev-server --config webpack/webpack.dev.js --open",
     "start": "npm run dev"
   },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "npm run lint:eslint:fix",
+      "git add --force"
+    ],
+    "*.{md,json}": [
+      "prettier --write",
+      "git add --force"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.17.10",
+    "@babel/eslint-parser": "^7.17.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-react": "^7.16.7",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-webpack-plugin": "^3.1.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "less-loader": "^10.2.0",
@@ -34,18 +52,6 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.0",
     "webpack-merge": "^5.8.0"
-  },
-  "browserslist": {
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ],
-    "production": [
-      ">0.1%",
-      "not dead",
-      "not op_mini all"
-    ]
   },
   "dependencies": {
     "@types/react": "^18.0.9",
