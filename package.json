@@ -7,10 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack/webpack.prod.js",
     "dev": "webpack-dev-server --config webpack/webpack.dev.js --open",
+    "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
+    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
     "start": "npm run dev"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
+    "src/*.{ts,tsx,js,jsx}": [
       "npm run lint:eslint:fix",
       "git add --force"
     ],
@@ -18,6 +22,12 @@
       "prettier --write",
       "git add --force"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test", // 在commit之前先执行npm run test命令
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS" // 校验commit时添加的备注信息是否符合我们要求的规范
+    }
   },
   "author": "",
   "license": "ISC",
@@ -40,7 +50,9 @@
     "eslint-webpack-plugin": "^3.1.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.0",
     "less-loader": "^10.2.0",
+    "lint-staged": "^12.4.1",
     "mini-css-extract-plugin": "^2.6.0",
     "normalize.css": "^8.0.1",
     "postcss-loader": "^6.2.1",
