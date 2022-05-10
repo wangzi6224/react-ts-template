@@ -8,46 +8,45 @@
     "build": "webpack --config webpack/webpack.prod.js",
     "dev": "webpack-dev-server --config webpack/webpack.dev.js --open",
     "lint-staged": "lint-staged",
-    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
-    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore",
-    "start": "npm run dev"
+    "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx --ignore-path .eslintignore ./src",
+    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .eslintignore ./src",
+    "start": "npm run dev",
+    "prepare": "husky install"
   },
-  "lint-staged": {
-    "src/*.{ts,tsx,js,jsx}": [
-      "npm run lint:js",
-      "git add --force"
-    ],
-    "*.{md,json}": [
-      "prettier --write",
-      "git add --force"
-    ]
-  },
-  "pre-commit": "lint:staged",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:js",
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx}": "npm run lint-staged:js",
+    "**/*.{tsx,ts,less,md,json}": [
+      "prettier --write"
+    ]
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.17.10",
-    "@babel/eslint-parser": "^7.17.0",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-react": "^7.16.7",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "eslint": "^8.15.0",
-    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-ali": "^14.0.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-webpack-plugin": "^3.1.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
@@ -62,6 +61,7 @@
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.3.0",
+    "typescript": "^4.6.4",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.0",

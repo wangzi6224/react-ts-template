@@ -3,5 +3,5 @@ module.exports = {
   printWidth: 100,
   proseWrap: 'never',
   endOfLine: 'lf',
-  indent: 4
+  indent: 4,
 }
