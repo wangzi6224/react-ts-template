@@ -1,19 +1,22 @@
 {
-  "parser": "@babel/eslint-parser",
-  "extends": "airbnb",
+  /*
+  * "off"或0 -关闭规则
+  * "warn" 或1 - 开启规则, 使用警告 程序不会退出
+  * "error"或2 - 开启规则, 使用错误 程序退出
+  */
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint-config-ali",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "eslint-plugin-react-hooks",
+    "@typescript-eslint",
+    "eslint-plugin-react"
+  ],
   "rules": {
-    "arrow-body-style": [
-      0
-    ],
-    "consistent-return": [
-      0
-    ],
-    "generator-star-spacing": [
-      0
-    ],
-    "global-require": [
-      1
-    ],
     "import/extensions": [
       0
     ],
@@ -50,14 +53,6 @@
     "react/forbid-prop-types": [
       2
     ],
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [
-          ".js"
-        ]
-      }
-    ],
     "react/jsx-no-bind": [
       0
     ],
@@ -89,13 +84,12 @@
       1,
       4
     ],
-    "indent": [
-      0,
-      4
+    "global-require": [
+      1
     ],
-    "curly": [
-      1,
-      "all"
+    "indent": [
+      "error",
+      4
     ],
     "comma-dangle": [
       2,
@@ -126,9 +120,13 @@
     "prefer-template": 0,
     "react/sort-comp": 0,
     "import/no-dynamic-require": 0,
+    // 禁止require()使用表达式调用
     "no-debugger": 0,
+    // 禁止使用调试器
     "prefer-destructuring": 0,
-    "object-curly-newline": 0,
+    // 需要从数组和/或对象中解构
+    "object-curly-newline": 2,
+    // 在大括号内强制使用一致的换行符
     "react/jsx-equals-spacing": 0
   },
   "parserOptions": {
@@ -138,6 +136,7 @@
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es6": true
   }
 }

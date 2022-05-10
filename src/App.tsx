@@ -6,7 +6,7 @@ const App: React.FC = () => {
         <div className="app">
             Hello World
         </div>
-    )
+    );
 };
 
 export default App;

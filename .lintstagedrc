@@ -1,3 +1,0 @@
-{
-  "*.{js,vue,ts,tsx}": [ "eslint --ext .js,.jsx,.ts,.tsx --format=pretty--ignore-path .gitignore ./src" ]
-}
