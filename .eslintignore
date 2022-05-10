@@ -13,6 +13,8 @@
 /.eslintignore
 /.gitignore
 /.lintstagedre.js
+/postcss.config.js
 /.prettier.js
 /tsconfig.json
 *.md
+*.less

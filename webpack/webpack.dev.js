@@ -3,8 +3,6 @@ const {merge} = require("webpack-merge");
 const {proxy} = require('../config')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-process.env.NODE = 'development';
-
 const devConfig = {
   mode: "development",
   /* output: {

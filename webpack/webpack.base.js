@@ -8,6 +8,8 @@ const TerserPlugin = require("terser-webpack-plugin");
 const os = require("os");
 const {alias} = require('../config');
 
+const BASE = JSON.stringify(process.env.NODE_ENV) === 'production' ? JSON.stringify('localhost:3000') : JSON.stringify('localhost:8000')
+
 module.exports = {
   entry: path.join(__dirname, '../src/index.tsx'),
   output: {
@@ -27,16 +29,49 @@ module.exports = {
       },
       {
         test: /\.(css|less)$/,
+        include: [path.join(__dirname, '../src')],
         use: [
           MiniCssExtractPlugin.loader,
-          // "style-loader",
           {
             loader: "css-loader",
             options: {
-              modules: true // 开启模块化
+              modules: {
+                localIdentName: '[name].[hash:6]'
+              }
             }
           },
-          "less-loader",
+          {
+            loader: "less-loader",
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+              },
+            }
+          },
+          "postcss-loader"
+        ]
+      },
+      {
+        test: /\.(css|less)$/,
+        include: [path.join(__dirname, '../node_module')],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: '[local]'
+              }
+            }
+          },
+          {
+            loader: "less-loader",
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+              },
+            }
+          },
           "postcss-loader"
         ]
       },
@@ -100,7 +135,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name]_[contenthash:8].css",
-      chunkFilename: 'chunk-[id].css'
+      // chunkFilename: 'chunk-[id].css'
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, `../src/index.html`),
@@ -118,6 +153,7 @@ module.exports = {
     }),
     new DefinePlugin({
       'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      BASE
     })
   ],
   resolve: {
