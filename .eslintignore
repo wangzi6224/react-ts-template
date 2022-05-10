@@ -2,3 +2,14 @@
 /scripts
 /config
 /webpack
+/logs
+/server/mockData
+/node_modules
+/dist
+/src/public
+/package-lock.json
+/.DS_Store
+/.eslintignore
+/.gitignore
+/.lintstagedre.js
+/.prettier.js
