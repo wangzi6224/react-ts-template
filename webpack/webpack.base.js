@@ -1,4 +1,5 @@
 const path = require("path");
+const {EnvironmentPlugin, DefinePlugin, ProvidePlugin} = require("webpack");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -29,7 +30,12 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           // "style-loader",
-          "css-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true // 开启模块化
+            }
+          },
           "less-loader",
           "postcss-loader"
         ]
@@ -109,6 +115,9 @@ module.exports = {
         minifyJS: true,
         removeComments: true,
       }
+    }),
+    new DefinePlugin({
+      'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     })
   ],
   resolve: {

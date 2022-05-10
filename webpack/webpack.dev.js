@@ -1,6 +1,7 @@
 const base = require('./webpack.base');
 const {merge} = require("webpack-merge");
 const {proxy} = require('../config')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 process.env.NODE = 'development';
 

@@ -82,7 +82,8 @@
                 - 安装css-loader、less-loader、style-loader，`npm i less-loader css-loader style-loader -D`;
 
                 - 安装`mini-css-extract-plugin`插件，提取css文件；
-                - ⚠️[MiniCssExtractPlugin.loade 与 style-loader冲突报错](https://github.com/webpack-contrib/mini-css-extract-plugin#recommended)
+                -
+                ⚠️[MiniCssExtractPlugin.loade 与 style-loader冲突报错](https://github.com/webpack-contrib/mini-css-extract-plugin#recommended)
 
           ```js
           const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -140,7 +141,7 @@
 
             - minimizer：
 
-                - 压缩css代码，安装`css-minimizer-webpack-plugin`插件；`npm install css-minimizer-webpack-plugin  -D`
+                - 压缩css代码，安装`css-minimizer-webpack-plugin`插件；`npm install css-minimizer-webpack-plugin -D`
 
                   ```js
                   const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -279,7 +280,8 @@
 
 3. 配置react环境：
 
-    1. 安装`react` 、`react-dom` 、`@babel/core`、`@babel/preset-env`、`@babel/perset-react`、`ts-loader`、`@types/react`、`@types/react-dom`
+    1. 安装`react` 、`react-dom` 、`@babel/core`、`@babel/preset-env`、`@babel/perset-react`、`ts-loader`、`@types/react`
+       、`@types/react-dom`
 
     2. 添加tsconfig.js文件：
 
@@ -309,7 +311,7 @@
          "rules": {
            "no-implicit-dependencies": ["optional", ["src"]]
          },
-         "include": ["./src/**/*", "./declaration"]
+         "include": ["./src/**/*", "./types"]
        }
        ```
 

@@ -1,9 +1,9 @@
 import React from "react";
-import './index.less';
+import styles from './index.less';
 
 const App: React.FC = () => {
     return (
-        <div className="app">
+        <div className={styles.app}>
             Hello World
         </div>
     );

@@ -10,18 +10,39 @@
     "strict": true,
     "outDir": "./built",
     "paths": {
-      "src/*":  ["./src/*"],
-      "assets/*":  ["./src/assets/*"],
-      "utils/*":  ["./src/utils/*"],
-      "pages/*":  ["./src/pages/*"],
-      "components/*":  ["./src/components/*"]
+      "src/*": [
+        "./src/*"
+      ],
+      "assets/*": [
+        "./src/assets/*"
+      ],
+      "utils/*": [
+        "./src/utils/*"
+      ],
+      "pages/*": [
+        "./src/pages/*"
+      ],
+      "components/*": [
+        "./src/components/*"
+      ]
     },
     "sourceMap": true,
     "target": "esnext"
   },
+  "plugins": [
+    "typescript-plugin-css-modules"
+  ],
   "rules": {
-    "no-implicit-dependencies": ["optional", ["src"]]
+    "no-implicit-dependencies": [
+      "optional",
+      [
+        "src"
+      ]
+    ]
   },
-  "include": ["./src/**/*", "./declaration"]
+  "include": [
+    "./src/**/*",
+    "./types"
+  ]
 }
 
