@@ -9,12 +9,15 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
     "eslint-config-ali"
   ],
   "plugins": [
-    "eslint-plugin-react-hooks",
+    "jsx-a11y",
     "@typescript-eslint",
-    "eslint-plugin-react"
+    "eslint-plugin-react",
+    "eslint-plugin-react-hooks"
   ],
   "rules": {
     "import/extensions": [
