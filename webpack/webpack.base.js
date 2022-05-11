@@ -1,5 +1,5 @@
 const path = require("path");
-const {EnvironmentPlugin, DefinePlugin, ProvidePlugin} = require("webpack");
+const {DefinePlugin} = require("webpack");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -139,9 +139,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, `../src/index.html`),
-      filename: `index.html`, // 指定打包出的文件名
-      chunks: '[hash:8]', // 生成的html使用哪些chunk
-      inject: true, // js或者css自动注入
+      filename: `index.html`,
+      chunks: '[hash:8]',
+      inject: true,
       minify: {
         html5: true,
         collapseWhitespace: true,
@@ -156,6 +156,9 @@ module.exports = {
       BASE
     })
   ],
+  devServer: {
+    historyApiFallback: true, // 开启history模式
+  },
   resolve: {
     alias,
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.less', '.css']

@@ -130,7 +130,7 @@
     "prefer-destructuring": 0,
     // 需要从数组和/或对象中解构
     "object-curly-newline": 2,
-    "object-curly-spacing": 2,
+    "object-curly-spacing": 1,
     // 在大括号内强制使用一致的换行符
     "react/jsx-equals-spacing": 0
   },

@@ -20,6 +20,7 @@ const devConfig = {
   devServer: {
     port: 8000,
     static: '../dist',
+    host: "0.0.0.0",
     hot: true,
     proxy
   },
