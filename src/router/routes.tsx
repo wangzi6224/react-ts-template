@@ -1,15 +1,26 @@
 import React from "react";
-import { RouteProps } from "react-router";
-import { Demo1, Demo2 } from "./routerElements";
+import Layouts from "src/Layouts";
+import { RouteObject } from "react-router-dom";
+import { Demo1, Demo2, Demo3 } from "./routerElements";
 
-const routes: Array<RouteProps> = [
+const routes: Array<RouteObject> = [
     {
-        path: "demo1",
-        element: <Demo1/>
-    },
-    {
-        path: "demo2",
-        element: <Demo2/>
+        path: "/",
+        element: <Layouts/>,
+        children: [
+            {
+                index: true,
+                element: <Demo1/>
+            },
+            {
+                path: "demo2",
+                element: <Demo2/>
+            },
+            {
+                path: 'demo3',
+                element: <Demo3/>
+            }
+        ]
     }
 ];
 
