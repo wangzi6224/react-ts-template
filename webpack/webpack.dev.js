@@ -1,7 +1,7 @@
 const base = require('./webpack.base');
 const {merge} = require("webpack-merge");
-const {proxy} = require('../config')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const {proxy} = require('../config');
+const os = require('os')
 
 const devConfig = {
   mode: "development",
@@ -20,7 +20,7 @@ const devConfig = {
   devServer: {
     port: 8000,
     static: '../dist',
-    host: "0.0.0.0",
+    host: RegExp(/^win/i).test(os.type()) ? '127.0.0.1' : "0.0.0.0",
     hot: true,
     proxy
   },
