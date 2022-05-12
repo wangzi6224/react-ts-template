@@ -1,7 +1,7 @@
 import React from "react";
 import Layouts from "src/Layouts";
 import { RouteObject } from "react-router-dom";
-import { Demo1, Demo2, Demo3 } from "./routerElements";
+import { Demo1, Demo2, Demo3 } from "./elements";
 
 const routes: Array<RouteObject> = [
     {
