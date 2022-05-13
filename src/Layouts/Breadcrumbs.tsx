@@ -11,12 +11,14 @@ const Breadcrumbs: React.FC<any> = () => {
     const [breadcrumbs, setBreadcrumbs] = useState<any>({});
     const pathSnippets = location.pathname.split('/').filter((i) => i);
 
+    const homeBreadcrumb = [
+        <Breadcrumb.Item key="/">
+            <Link to="/">Dashboard</Link>
+        </Breadcrumb.Item>
+    ];
+
     const breadcrumbItems = useMemo(() => {
-        return [
-            <Breadcrumb.Item key="/">
-                <Link to="/">Dashboard</Link>
-            </Breadcrumb.Item>
-        ].concat(pathSnippets.map((_, index) => {
+        return homeBreadcrumb.concat(pathSnippets.map((_, index) => {
             const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
             return (
                 <Breadcrumb.Item key={url}>

@@ -6,10 +6,9 @@ import { PieChartOutlined } from '@ant-design/icons';
 
 export const addRouters: Array<Routers> = [
     {
+        path: '/',
         index: true,
         label: 'Dashboard',
-        path: '/',
-        key:'/',
         icon: <PieChartOutlined/>,
         element: <Demo1/>
     },
@@ -23,16 +22,14 @@ export const addRouters: Array<Routers> = [
                 element: <Demo2/>,
                 children: [
                     {
-                        label: 'demo2',
                         path: '/demo2',
-                        key:'/demo2',
+                        label: 'demo2',
                         icon: <PieChartOutlined/>,
                         element: <Demo2/>
                     },
                     {
-                        label: 'demo3',
                         path: '/demo2/demo3',
-                        key:'/demo2/demo3',
+                        label: 'demo3',
                         icon: <PieChartOutlined/>,
                         element: <Demo3/>,
                         hidden: true
@@ -44,7 +41,6 @@ export const addRouters: Array<Routers> = [
     {
         label: 'demo3',
         path: '/demo2/demo3',
-        key:'/demo2/demo3',
         icon: <PieChartOutlined/>,
         element: <Demo3/>,
         hidden: true

@@ -1,10 +1,11 @@
 import React, { useCallback, useState } from "react";
-import styles from "src/Layouts/index.less";
 import { Layout, Menu } from "antd";
-import { addRouters } from "src/router/routes";
-import { useLocation } from "react-router";
 import { history } from "src/router";
+import { useLocation } from "react-router";
+import styles from "src/Layouts/index.less";
+import { addRouters } from "src/router/routes";
 import type { Routers } from 'src/router/routes.d';
+import type { MenuItemType } from 'rc-menu/lib/interface';
 import type { MenuInfo } from 'node_modules/rc-menu/lib/interface.d';
 
 const { Sider } = Layout;
@@ -20,19 +21,20 @@ const Sidebar:React.FC = () => {
         return !r.hidden;
     });
 
-    const getRouter: (router: Array<Routers>) => Array<Routers> = (router) => {
-        return router.map((r) => {
-            if (r.children) {
+    const getRouter: (router: Array<Routers>) => Array<MenuItemType> = (router) => {
+        return router.map((r, i) => {
+            if (r?.children) {
                 return ({
-                    label: r.label,
+                    key: i,
                     icon: r.icon,
+                    label: r.label,
                     children: getRouter(r.children)
                 });
             }
             return ({
-                key: r.path,
+                icon: r.icon,
                 label: r.label,
-                icon: r.icon
+                key: r.path as string
             });
         });
     };
@@ -59,7 +61,7 @@ const Sidebar:React.FC = () => {
                 onClick={handle}
                 selectedKeys={[location.pathname]}
                 defaultSelectedKeys={[location.pathname]}
-                items={routesCallback(filterHidden(addRouters)) as any}
+                items={routesCallback(filterHidden(addRouters))}
             />
         </Sider>
     );
