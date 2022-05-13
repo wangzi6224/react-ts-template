@@ -28,6 +28,14 @@ export const addRouters: Array<Routers> = [
                         key:'/demo2',
                         icon: <PieChartOutlined/>,
                         element: <Demo2/>
+                    },
+                    {
+                        label: 'demo3',
+                        path: '/demo2/demo3',
+                        key:'/demo2/demo3',
+                        icon: <PieChartOutlined/>,
+                        element: <Demo3/>,
+                        hidden: true
                     }
                 ]
             }
@@ -35,10 +43,11 @@ export const addRouters: Array<Routers> = [
     },
     {
         label: 'demo3',
-        path: '/demo3',
-        key:'/demo3',
+        path: '/demo2/demo3',
+        key:'/demo2/demo3',
         icon: <PieChartOutlined/>,
-        element: <Demo3/>
+        element: <Demo3/>,
+        hidden: true
     }
 ];
 

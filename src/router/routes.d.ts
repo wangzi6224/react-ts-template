@@ -6,6 +6,7 @@ interface Routers extends RouteObject {
     label?: string,
     icon?: React.ReactNode,
     children?: Array<Routers>,
+    hidden?: boolean,
     meta?: {
         [propsName:string] :any
     },

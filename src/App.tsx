@@ -7,11 +7,11 @@ const App: React.FC = () => {
     const element = useRoutes(routes);
 
     return (
-        <div>
+        <>
             {
                 element
             }
-        </div>
+        </>
     );
 };
 
