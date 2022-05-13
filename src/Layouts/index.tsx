@@ -1,69 +1,71 @@
-import React, { useState } from "react";
-import type { MenuItem } from './index.d';
-import { Outlet } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined
-} from '@ant-design/icons';
+import React, { useCallback, useState } from "react";
 import styles from './index.less';
+import { Layout, Menu } from 'antd';
+import { history } from "src/router";
+import { Outlet } from 'react-router-dom';
+import { addRouters } from "src/router/routes";
+import Breadcrumbs from "src/Layouts/Breadcrumbs";
+import type { Routers } from 'src/router/routes.d';
+import type { MenuInfo } from 'node_modules/rc-menu/lib/interface.d';
+import { useLocation } from "react-router";
 
 const { Header, Content, Sider } = Layout;
 
-function getItem(
-    label: React.ReactNode,
-    key: React.Key,
-    icon?: React.ReactNode,
-    children?: MenuItem[]
-): MenuItem {
-    return {
-        key,
-        icon,
-        children,
-        label
-    } as MenuItem;
-}
-
-const items: MenuItem[] = [
-    getItem('Option 1', '1', <PieChartOutlined/>),
-    getItem('Option 2', '2', <DesktopOutlined/>),
-    getItem('User', 'sub1', <UserOutlined/>, [
-        getItem('Tom', '3'),
-        getItem('Bill', '4'),
-        getItem('Alex', '5')
-    ]),
-    getItem('Team', 'sub2', <TeamOutlined/>, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined/>)
-];
-
 const Layouts: React.FC = () => {
-    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const [collapsed, setCollapsed] = useState<boolean>(!!JSON.parse(localStorage.getItem('collapsed') || 'false'));
+    const location = useLocation();
+
+    const getRouter: (router: Array<Routers>) => Array<Routers> = (router) => {
+        return router.map((r) => {
+            if (r.children) {
+                return ({
+                    label: r.label,
+                    icon: r.icon,
+                    children: getRouter(r.children)
+                });
+            }
+            return ({
+                key: r.path,
+                label: r.label,
+                icon: r.icon
+            });
+        });
+    };
+
+    const routesCallback = useCallback(getRouter, []);
+
+    const handle = (ev: MenuInfo) => {
+        history.push(ev.key);
+    };
+
+    const onCollapse = (ev: boolean) => {
+        localStorage.setItem('collapsed', JSON.stringify(ev));
+        setCollapsed(ev);
+    };
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
             {/* 左侧边栏 */}
-            <Sider theme="light" collapsible collapsed={collapsed} onCollapse={setCollapsed}>
+            <Sider theme="light" collapsible collapsed={collapsed} onCollapse={onCollapse}>
                 <div className={styles.logo}>
                     Logo
                 </div>
-                <Menu theme="light" defaultSelectedKeys={['1']} mode="inline" items={items}/>
+                <Menu
+                    theme="light"
+                    mode="inline"
+                    onClick={handle}
+                    selectedKeys={[location.pathname]}
+                    defaultSelectedKeys={[location.pathname]}
+                    items={routesCallback(addRouters) as any}
+                />
             </Sider>
             {/* 右侧布局 */}
             <Layout>
-                <Header className={styles.siteLayoutBackground} style={{ padding: 0 }}>
-                    Header
+                <Header className={styles.siteLayoutHeader}>
+                    <Breadcrumbs />
                 </Header>
-                <Content style={{ margin: '0 16px' }}>
-                    {/* 面包屑 */}
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item>User</Breadcrumb.Item>
-                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                    </Breadcrumb>
-                    {/* Content */}
-                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                <Content style={{ margin: '16px' }}>
+                    <div style={{ padding: 24, minHeight: 360, background: '#fff' }}>
                         <Outlet/>
                     </div>
                 </Content>
