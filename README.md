@@ -196,7 +196,7 @@
 
         2. 并且在types文件夹下的`react-app-env.d.ts`声明文件中定义该变量；
 
-           > ```js
+       > ```js
        > declare module "*.less"; // css module 中声明使用
        > declare module '*.css';
        >
