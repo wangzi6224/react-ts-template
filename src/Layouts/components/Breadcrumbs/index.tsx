@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 import type { Routers } from 'src/router/routes.d';
 import { addRouters } from "src/router/routes";
 
-const Breadcrumbs: React.FC<any> = () => {
+const Index: React.FC<any> = () => {
     const location = useLocation();
     const breadcrumbNameMap = new Map();
     const [breadcrumbs, setBreadcrumbs] = useState<any>({});
@@ -62,4 +62,4 @@ const Breadcrumbs: React.FC<any> = () => {
     );
 };
 
-export default Breadcrumbs;
+export default Index;

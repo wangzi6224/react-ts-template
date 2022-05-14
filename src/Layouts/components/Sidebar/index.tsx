@@ -2,11 +2,15 @@ import React, { useCallback, useState } from "react";
 import { Layout, Menu } from "antd";
 import { history } from "src/router";
 import { useLocation } from "react-router";
-import styles from "src/Layouts/styles/index.less";
 import { addRouters } from "src/router/routes";
 import type { Routers } from 'src/router/routes.d';
+import styles from "src/Layouts/styles/index.less";
 import type { MenuItemType } from 'rc-menu/lib/interface';
 import type { MenuInfo } from 'node_modules/rc-menu/lib/interface.d';
+
+interface FilterHidden {
+    (router: Array<Routers>) : Array<Routers>
+}
 
 const { Sider } = Layout;
 
@@ -14,7 +18,7 @@ const Sidebar:React.FC = () => {
     const [collapsed, setCollapsed] = useState<boolean>(!!JSON.parse(localStorage.getItem('collapsed') || 'false'));
     const location = useLocation();
 
-    const filterHidden: (router: Array<Routers>) => Array<Routers> = (router) => router.filter((r) => {
+    const filterHidden: FilterHidden = (router) => router.filter((r) => {
         if (r.children) {
             r.children = filterHidden(r.children);
         }
@@ -41,8 +45,8 @@ const Sidebar:React.FC = () => {
 
     const routesCallback = useCallback(getRouter, []);
 
-    const handle = (ev: MenuInfo) => {
-        history.push(ev.key);
+    const push = ({ key }: MenuInfo) => {
+        history.push(key);
     };
 
     const onCollapse = (ev: boolean) => {
@@ -58,7 +62,7 @@ const Sidebar:React.FC = () => {
             <Menu
                 theme="light"
                 mode="inline"
-                onClick={handle}
+                onClick={push}
                 selectedKeys={[location.pathname]}
                 defaultSelectedKeys={[location.pathname]}
                 items={routesCallback(filterHidden(addRouters))}
