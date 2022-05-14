@@ -1,4 +1,4 @@
-import {RouteObject} from "react-router-dom";
+import { RouteObject } from "react-router-dom";
 import React from "react";
 import type { MenuItemType } from 'rc-menu/lib/interface';
 

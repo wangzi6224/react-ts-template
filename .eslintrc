@@ -85,14 +85,14 @@
     ],
     "react/jsx-indent": [
       1,
-      4
+      2
     ],
     "global-require": [
       2
     ],
     "indent": [
       "error",
-      4
+      2
     ],
     "comma-dangle": [
       2,
