@@ -2,7 +2,8 @@ import React, { createContext } from "react";
 import './index.less';
 import routes from "src/router/routes";
 import { useRoutes } from "react-router-dom";
-import { useGlobalData, getGlobalData } from "./hooks/useGlobalData";
+import { useGlobalData } from "./hooks/useGlobalData";
+import { getGlobalData } from 'utils/getGlobalData';
 
 export const GlobalContext = createContext({});
 
