@@ -1,9 +1,9 @@
 import React from "react";
 import { Layout } from 'antd';
-import styles from './index.less';
+import styles from './styles/index.less';
 import { Outlet } from 'react-router-dom';
-import Sidebar from "src/Layouts/Sidebar";
-import Breadcrumbs from "src/Layouts/Breadcrumbs";
+import Sidebar from "src/Layouts/components/Sidebar";
+import Breadcrumbs from "src/Layouts/components/Breadcrumbs";
 
 const { Header, Content } = Layout;
 
