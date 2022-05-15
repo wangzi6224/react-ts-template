@@ -10,7 +10,6 @@
 /package.json
 /package-lock.json
 /.DS_Store
-/.eslintignore
 /.gitignore
 /.lintstagedre.js
 /postcss.config.js
@@ -18,3 +17,6 @@
 /tsconfig.json
 *.md
 *.less
+/docker-compose.yml
+/Dockerfile
+/nginx_default.conf
