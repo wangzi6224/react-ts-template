@@ -13,6 +13,7 @@
     "start": "npm run dev",
     "prepare": "husky install"
   },
+  "homepage": "https://wangzi6224.github.io/github-actions-demo",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
