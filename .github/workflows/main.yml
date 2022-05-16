@@ -19,5 +19,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           token: ${{ secrets.wangzi6224 }}
-          BRANCH: gh-pages
-          FOLDER: dist
+          branch: gh-pages
+          folder: dist
