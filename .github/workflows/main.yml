@@ -8,12 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Build and Deploy
+        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
+        with:
+          persist-credentials: false
+      - name: Install and Build
+        run: |
+          npm install
+          npm run-script build
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          token: ${{ secrets.wangzi6224 }}
-          branch: gh-pages
-          folder: dist
-          build_script: npm install && npm run build
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build
