@@ -13,7 +13,7 @@ jobs:
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         env:
-          ACCESS_TOKEN: ${{ secrets.wangzi6224 }}
-          BRANCH: gh-pages
-          FOLDER: dist
-          BUILD_SCRIPT: npm install && npm run build
+          token: ${{ secrets.wangzi6224 }}
+          branch: gh-pages
+          folder: dist
+          build_script: npm install && npm run build
