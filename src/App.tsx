@@ -13,8 +13,8 @@ const App: React.FC = () => {
   const { contextData } = useGlobalData(async () => {
     try {
       return await getGlobalData();
-    } catch (err) {
-      console.warn(err);
+    } catch (error) {
+      console.warn(error);
     }
   });
 
