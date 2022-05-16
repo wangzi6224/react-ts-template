@@ -1,8 +1,7 @@
 name: GitHub Actions Build and Deploy Demo
 on:
   push:
-    branches:
-      - master
+    branches: [master, 'feature/action']
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -16,7 +15,7 @@ jobs:
           npm install
           npm run-script build
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           ssh-key: ${{ secrets.ACCESS_TOKEN }}
           branch: gh-pages
